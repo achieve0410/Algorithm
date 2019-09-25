@@ -1,5 +1,3 @@
-import sys
-
-n = str(sys.stdin.readline())
-
-n.split();
+mylist = [1,2,-3,4,5]
+mylist = list(map(abs, mylist))
+print(max(mylist))
