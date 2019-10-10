@@ -10,7 +10,7 @@ ways = []
 t_minValue = 0
 t_maxValue = 0
 t_totalCost = 0
-t_ways = []
+t_ways = [] 
 
 def bst(road, start, cost):
 
