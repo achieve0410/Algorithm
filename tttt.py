@@ -1,2 +1,5 @@
-for i in range(0, 0, -1):
-    print(i)
+import numpy as np
+
+myList = np.array(range(10))
+
+print(np.roll(myList, 2))
