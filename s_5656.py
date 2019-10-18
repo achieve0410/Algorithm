@@ -98,31 +98,48 @@ def reCreateMap(myMap, block):
                     break
     return ret_map
 
+def findBlock(myMap, N, myList):
+    print("myList: {}".format(myList))
+    mymap = myMap.copy()
+    answer = myList
+
+    W = len(mymap[0])
+    H = len(mymap)
+
+    answer = W*H
+    # q = [[4, 5], [3, 4], [4, 4]]
+    # q = [[0, 0], [1, 1], [2, 2], [3, 3]]
+    if(len(myList)<N):
+        for i in range(W):
+            myList.append(i)
+            temp = findBlock(mymap, N, myList)
+    else:
+        return
+        # print("\n\n")
+        # q = findQ(mymap)
+        # # mymap = reCreateMap(mymap, [q[0][0], q[0][1]])
+        # mymap = reCreateMap(mymap, q)
+        # print("{} map: {}".format(4-N, mymap))
+
+        # q.pop(0)
+        # temp = countingNotZero(mymap)
+        # print("temp: {}".format(temp))
+        # if(temp<answer):
+        #     answer=temp
+        # print("myList: {}".format(myList))
+
+
+
+    return answer
+
 def solution(myMap, N):
     mymap = myMap.copy()
     W = len(mymap[0])
     H = len(mymap)
-    N = N
-
-    answer = W*H
 
     print("origin map: {}, count: {}".format(myMap, countingNotZero(myMap)))
-    # q = [[4, 5], [3, 4], [4, 4]]
-    q = [[0, 0], [1, 1], [2, 2], [3, 3]]
 
-    while(N>0):
-        print("\n\n")
-        mymap = reCreateMap(mymap, [q[0][0], q[0][1]])
-        print("{} map: {}".format(4-N, mymap))
-
-        q.pop(0)
-        temp = countingNotZero(mymap)
-        print("temp: {}".format(temp))
-        if(temp<answer):
-            answer=temp
-        N -= 1
-
-    return answer
+    return findBlock(myMap, N, [])
 
 T = int(input())
 

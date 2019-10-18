@@ -1,5 +1,5 @@
-import numpy as np
+mySet = {1:{1,2,3}}
 
-myList = np.array(range(10))
+mySet[1] = 123
 
-print(np.roll(myList, 2))
+print(mySet)
