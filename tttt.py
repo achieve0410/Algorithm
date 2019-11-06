@@ -1,5 +1,9 @@
-mySet = {1:{1,2,3}}
+mySet = set()
 
-mySet[1] = 123
+mySet.add('a')
+mySet.add('b')
+mySet.add('a')
+mySet.add('c')
+mySet.add('a')
 
-print(mySet)
+print(mySet, len(mySet))
