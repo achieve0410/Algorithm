@@ -29,6 +29,9 @@
 # 예제 출력 1 
 # 15
 
+
+
+
 # 7
 # 1 9
 # 1 100
@@ -75,78 +78,49 @@
 
 # # 59
 
-from collections import deque
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import sys
-
-def heapAppend(myqueue, V, idx):
-    cup, deadline = V[0], V[1]
-
-    ## 부모노드와 비교해서 최대 힙 구성
-    myidx = idx
-    while myidx!=0:
-        pidx = myidx//2
-        if myidx == 1:
-            myqueue[myidx] = [cup, deadline]
-            break
-
-        elif cup >= myqueue[pidx][0]:
-            myqueue[myidx] = myqueue[pidx]
-            myqueue[pidx] = [cup, deadline]
-            myidx = pidx
-        else:
-            myqueue[myidx] = [cup, deadline]
-            break
 
 N = int(sys.stdin.readline())
 
 ## 라면 배열
-pqueue = [[0 for _ in range(2)] for _ in range(N+1)]
 mydict = {}
 answer = 0
 
 for i in range(N):
     deadline, cup = list(map(int, sys.stdin.readline().split(" ")))
 
-    ## cup 기준으로 최대 힙 구현
-    heapAppend(pqueue, [cup, deadline], i+1)
-    # print(pqueue)
-
-print(pqueue)
-
-## 일자별로 최대 cup 선택
-
-for value in pqueue[1:]:
-    cups, time = value[0], value[1]
-    print(time, cups)
-    if time not in mydict:
-        mydict[time] = cups
-        answer += mydict[time]
-        # print("!!")
-        # print(answer)
+    if cup not in mydict:
+        mydict[cup] = [deadline]
     else:
-        if len(mydict[time])==time:
-            for val in mydict[time]:
-                if val < cups:
-                    answer -= val
-                    answer += cups
-                    break
-        elif len(mydict[time])<time:
+        mydict[cup].append(deadline)
 
-# idx = 1
-# for value in pqueue[1:]:
-#     cups, time = value[0], value[1]
-#     print(time, cups)
-#     if idx < time:
-#         answer += cups
-#         print("!!")
-#         print(answer)
-#     elif idx == time:
+mydict = sorted(mydict.items(), reverse=True)
+myarray = [0 for i in range(N+1)]
 
-#     else:
-#         answer += cups
-#         print("@@")
-#         print(answer)
-#         continue
+for myset in mydict:
+    mcup, mtimes = myset[0], myset[1]
 
-print(mydict)
+    for time in mtimes:
+        # print(time, mcup)
+        for idx in range(time, 0, -1):
+            if myarray[idx] <= mcup:
+                myarray[idx] = mcup
+                # print(myarray)
+                break
+
+answer = sum(myarray)
 print(answer)

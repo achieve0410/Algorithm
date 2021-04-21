@@ -1,5 +1,7 @@
-import numpy as np
+mmlist = set()
+print(mmlist)
+mmlist.add(tuple([0,1]))
+print(mmlist)
 
-myList = np.array(range(10))
-
-print(np.roll(myList, 2))
+mmlist.add(tuple([0,1]))
+print(mmlist)
